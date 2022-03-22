@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"strconv"
+	"time"
 
 	pbgameengine "github.com/kazakh-in-nz/m-game-engine/v1"
 	pbhighscore "github.com/kazakh-in-nz/m_apis/v1"
@@ -64,9 +65,13 @@ func NewGrpcGameEngineServiceClient(serverAddr string) (pbgameengine.GameEngineC
 }
 
 func (gr *gameResource) GetHighScore(c *gin.Context) {
-	highScoreResponse, err := gr.gameClient.GetHighScore(context.Background(), &pbhighscore.GetHighScoreRequest{})
+	timeoutCtx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	highScoreResponse, err := gr.gameClient.GetHighScore(timeoutCtx, &pbhighscore.GetHighScoreRequest{})
 
 	if err != nil {
+		log.Info().Msg("Test message ======>")
 		log.Error().Err(err).Msg("Failed to get high score")
 		log.Panic()
 	}
@@ -86,7 +91,10 @@ func (gr *gameResource) SetHighScore(c *gin.Context) {
 		log.Error().Err(err).Msg("Failed to convert highscore to float")
 	}
 
-	_, error := gr.gameClient.SetHighScore(context.Background(), &pbhighscore.SetHighScoreRequest{
+	timeoutCtx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	_, error := gr.gameClient.SetHighScore(timeoutCtx, &pbhighscore.SetHighScoreRequest{
 		HighScore: highScoreFloat64,
 	})
 
@@ -96,7 +104,10 @@ func (gr *gameResource) SetHighScore(c *gin.Context) {
 }
 
 func (gr *gameResource) GetSize(c *gin.Context) {
-	sizeResponse, err := gr.gameEngineClient.GetSize(context.Background(), &pbgameengine.GetSizeRequest{})
+	timeoutCtx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	sizeResponse, err := gr.gameEngineClient.GetSize(timeoutCtx, &pbgameengine.GetSizeRequest{})
 
 	if err != nil {
 		log.Error().Err(err).Msg("Failed to get size")
@@ -118,7 +129,10 @@ func (gr *gameResource) SetScore(c *gin.Context) {
 		log.Error().Err(err).Msg("Failed to convert score to float")
 	}
 
-	_, error := gr.gameEngineClient.SetScore(context.Background(), &pbgameengine.SetScoreRequest{
+	timeoutCtx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	_, error := gr.gameEngineClient.SetScore(timeoutCtx, &pbgameengine.SetScoreRequest{
 		Score: score64,
 	})
 

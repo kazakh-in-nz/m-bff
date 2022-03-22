@@ -63,8 +63,8 @@ github.com/google/uuid v1.1.2/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+
 github.com/grpc-ecosystem/grpc-gateway v1.16.0/go.mod h1:BDjrQk3hbvj6Nolgz8mAMFbcEtjT1g+wF4CSlocrBnw=
 github.com/json-iterator/go v1.1.9 h1:9yzud/Ht36ygwatGx56VwCZtlI/2AD15T1X2sjSuGns=
 github.com/json-iterator/go v1.1.9/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
-github.com/kazakh-in-nz/m-game-engine v0.0.0-20220321214648-02d0ca2dc5e2 h1:uyFQYlf4UghQyMaUPAFMgdrTTRFeXT0Ll5BY8E+ltig=
-github.com/kazakh-in-nz/m-game-engine v0.0.0-20220321214648-02d0ca2dc5e2/go.mod h1:f90aeZEemNJF+Q5ESEmqQUeYC2HCft1ju6bNb6K+Ugs=
+github.com/kazakh-in-nz/m-game-engine v0.0.0-20220322210826-a2ae6d9f75a5 h1:YgC647RSKuHinqYTSuOGNrGthUuPhnOelk1vkhCnS8U=
+github.com/kazakh-in-nz/m-game-engine v0.0.0-20220322210826-a2ae6d9f75a5/go.mod h1:dpJ9u0l/u6gPUl54sEzkw2llhRY7ukiDLs7N6p3BANM=
 github.com/kazakh-in-nz/m_apis v0.0.0-20220321085950-c3d1da863dba h1:vH8qVJdjzsVKfwGY6E5L77SEt68i4hEuvBn9zUllOVI=
 github.com/kazakh-in-nz/m_apis v0.0.0-20220321085950-c3d1da863dba/go.mod h1:LhhtObcnHpPUf+I3bXoLOkv1+TYL+JwuhO0iee589e4=
 github.com/leodido/go-urn v1.2.0 h1:hpXL4XnriNwQ/ABnpepYM/1vCLWNDfUNts8dX3xTG6Y=
@@ -183,8 +183,9 @@ google.golang.org/protobuf v1.23.1-0.20200526195155-81db48ad09cc/go.mod h1:EGpAD
 google.golang.org/protobuf v1.25.0/go.mod h1:9JNX74DMeImyA3h4bdi1ymwjUzf21/xIlbajtzgsN7c=
 google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
-google.golang.org/protobuf v1.27.1 h1:SnqbnDw1V7RiZcXPx5MEeqPv2s79L9i7BJUlG/+RurQ=
 google.golang.org/protobuf v1.27.1/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
+google.golang.org/protobuf v1.28.0 h1:w43yiav+6bVFTBQFZX0r7ipe9JQ1QsbMgHwbBziscLw=
+google.golang.org/protobuf v1.28.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
