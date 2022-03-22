@@ -9,8 +9,9 @@ import (
 )
 
 func main() {
+
 	grpcAddressHighScore := flag.String("address-m-highscore", "localhost:60051", "The grpc server address for highscore service")
-	grpcAddressGameEngine := flag.String("address-m-highscore", "localhost:60052", "The grpc server address for game engine service")
+	grpcAddressGameEngine := flag.String("address-m-game-engine", "localhost:60052", "The grpc server address for game engine service")
 
 	serverAddress := flag.String("address-http", ":8081", "HTTP server address")
 
@@ -29,11 +30,12 @@ func main() {
 	gr := bff.NewGameResource(gameClient, gameEngineClient)
 
 	router := gin.Default()
+	router.SetTrustedProxies([]string{"127.0.0.1"})
 
 	router.GET("/geths", gr.GetHighScore)
 	router.POST("/seths/:hs", gr.SetHighScore)
 	router.GET("/getsize", gr.GetSize)
-	router.POST("/setscore/:score", gr.SerScore)
+	router.POST("/setscore/:score", gr.SetScore)
 
 	err := router.Run(*serverAddress)
 

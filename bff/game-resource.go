@@ -33,7 +33,6 @@ func NewGrpcGameServiceClient(serverAddr string) (pbhighscore.GameClient, error)
 		return nil, err
 	} else {
 		log.Info().Msgf("Successfully connected to [%s]", serverAddr)
-
 	}
 
 	if conn == nil {
@@ -43,7 +42,6 @@ func NewGrpcGameServiceClient(serverAddr string) (pbhighscore.GameClient, error)
 	client := pbhighscore.NewGameClient(conn)
 
 	return client, nil
-
 }
 
 func NewGrpcGameEngineServiceClient(serverAddr string) (pbgameengine.GameEngineClient, error) {
@@ -54,7 +52,6 @@ func NewGrpcGameEngineServiceClient(serverAddr string) (pbgameengine.GameEngineC
 		return nil, err
 	} else {
 		log.Info().Msgf("Successfully connected to [%s]", serverAddr)
-
 	}
 
 	if conn == nil {
@@ -64,7 +61,21 @@ func NewGrpcGameEngineServiceClient(serverAddr string) (pbgameengine.GameEngineC
 	client := pbgameengine.NewGameEngineClient(conn)
 
 	return client, nil
+}
 
+func (gr *gameResource) GetHighScore(c *gin.Context) {
+	highScoreResponse, err := gr.gameClient.GetHighScore(context.Background(), &pbhighscore.GetHighScoreRequest{})
+
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to get high score")
+		log.Panic()
+	}
+
+	hsString := strconv.FormatFloat(highScoreResponse.GetHighScore(), 'e', -1, 64)
+
+	c.JSONP(200, gin.H{
+		"hs": hsString,
+	})
 }
 
 func (gr *gameResource) SetHighScore(c *gin.Context) {
@@ -84,35 +95,22 @@ func (gr *gameResource) SetHighScore(c *gin.Context) {
 	}
 }
 
-func (gr *gameResource) GetHighScore(c *gin.Context) {
-	highScoreResponse, err := gr.gameClient.GetHighScore(context.Background(), &pbhighscore.GetHighScoreRequest{})
-
-	if err != nil {
-		log.Error().Err(err).Msg("Failed to get high score")
-	}
-
-	hsString := strconv.FormatFloat(highScoreResponse.GetHighScore(), 'e', -1, 64)
-
-	c.JSONP(200, gin.H{
-		"hs": hsString,
-	})
-}
-
 func (gr *gameResource) GetSize(c *gin.Context) {
 	sizeResponse, err := gr.gameEngineClient.GetSize(context.Background(), &pbgameengine.GetSizeRequest{})
 
 	if err != nil {
 		log.Error().Err(err).Msg("Failed to get size")
+		log.Panic()
 	}
 
 	sizeString := strconv.FormatFloat(sizeResponse.GetSize(), 'e', -1, 64)
 
 	c.JSONP(200, gin.H{
-		"hs": sizeString,
+		"size": sizeString,
 	})
 }
 
-func (gr *gameResource) SerScore(c *gin.Context) {
+func (gr *gameResource) SetScore(c *gin.Context) {
 	scoreString := c.Param("score")
 	score64, err := strconv.ParseFloat(scoreString, 64)
 
